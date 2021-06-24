@@ -12,7 +12,7 @@ print("model loading...")
 
 # Model & Tokenizer loading
 tokenizer = AutoTokenizer.from_pretrained("./mrc-bert-base")
-model = AutoModelForQuestionAnswering.from_pretrained('./mrc-bert-base')
+model = AutoModelForQuestionAnswering.from_pretrained("./mrc-bert-base")
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model.to(device)
@@ -36,7 +36,6 @@ def handle_requests_by_batch():
 
             for requests in request_batch:
                 try:
-                    print(requests['input'][0], requests['input'][1])
                     requests["output"] = make_answer(requests['input'][0], requests['input'][1])
 
                 except Exception as e:

@@ -1,0 +1,48 @@
+openapi: 3.0.1
+
+info:
+  title: KLUE-MRC-BERT
+  version: 1.0.0
+  contact:
+    name: Changyeop
+  description: |
+    Try using the QA model as a BERT model trained on KLUE-MRC data
+    ---
+          How to use:
+          * context, question을 입력해주세요.
+          * context 길이가 길면 context 중간에 잘려 결과물이 잘 안 나올 수 있습니다.
+    ---
+
+servers:
+  - url: https://main-klue-mrc-bert-scy6500.endpoint.ainize.ai
+
+paths:
+  /generate:
+    post:
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                context:
+                  type: string
+                question:
+                  type: string
+              required:
+                - context
+                - question
+      responses: # Set response
+        '200':
+          description: "Successful Response"
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: "Bad Request Error"
+        '429':
+          description: "Too many requests"
+        '500':
+          description: "Server-side Error"
