@@ -100,8 +100,6 @@ def generate():
     while 'output' not in req:
         time.sleep(CHECK_INTERVAL)
 
-    print(req['output'])
-
     return jsonify(req['output'])
 
 
